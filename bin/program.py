@@ -320,8 +320,7 @@ class Program:
         self.timestamp = 0
         self.input_files = []
         for f in self.source_files:
-            ensure_symlink(self.tmpdir / f.name, f)
-            self.input_files.append(self.tmpdir / f.name)
+            self.input_files.append(f.resolve())
             self.timestamp = max(self.timestamp, f.stat().st_ctime)
 
         if not self._get_language(self.source_files): return False
